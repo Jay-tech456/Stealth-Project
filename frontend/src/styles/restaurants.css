@@ -1,0 +1,14 @@
+.restaurants{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.restaurants > div{
+    width: 100%;
+    text-align: center;
+    
+}
+input{
+    width: 60%;
+    background-color: #F8F8F8 ;
+}

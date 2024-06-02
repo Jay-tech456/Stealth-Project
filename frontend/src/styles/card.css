@@ -1,0 +1,132 @@
+.cards {
+    width: 100%;
+    max-width: 1600px;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+
+.cards > div {
+    width: 95%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(17.25rem, 100%), 1fr));
+    grid-gap: 1rem;
+    justify-items: center;
+}
+
+.card {
+    width: 100%;
+    max-width: 350px;
+    background-color: #F8F8F8;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card > div:nth-child(2) > p:nth-child(1){
+    font-weight: bold;
+}
+.cardImage {
+    background-size: cover;
+    width: 100%;
+    height: 250px;
+    display: flex;
+    justify-content: end;
+    align-items: flex-start;
+}
+
+.cardImage p {
+    width: 50px;
+    padding: 5px;
+    background-color: #F8F8F8;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .cards > div {
+        grid-template-columns: repeat(auto-fit, minmax(17.25rem, 1fr));
+        justify-items: center;
+    }
+}
+
+.bigCard{
+    width: 100%;
+    background-color: #F8F8F8;
+    display: flex;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    
+}
+.card-right{
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    margin-left: 50px;
+}
+
+.card-left{
+    width: 350px;
+    height: 300px;
+    background-size: cover;
+    border-radius: 5px;
+}
+.storeInfo {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    font-size: small;
+    align-items: center;
+  }
+  
+  .storeInfo > div {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    flex: 1 1 auto;
+  }
+  
+  .storeInfo img {
+    margin-right: 5px;
+  }
+  .card-right button{
+    border-style: none;
+    border-radius: 10px;
+    padding: 5px 20px 5px 20px;
+    background-color: rgb(196, 195, 195);
+    color: black;
+  }
+  .card-right button:hover {
+    background-color: gray;
+    color: white;
+  }
+  @media (max-width: 768px) {
+    .bigCard{
+        display: block;
+        padding: 0;
+    }
+    .card-left{
+        width: 100%;
+    }
+    .card-right{
+        margin-left: 0;
+    }
+  }
+
+#resprofile-info > #child1 > div{
+    width: 100%;
+    display: flex;
+}
+
+#resprofile-info > #child1 > div p{
+    margin: 0;
+}
+#child1 > p, #child2 > p, #child3 > p{
+    font-weight: bold;
+    margin: 0;
+}

@@ -1,0 +1,88 @@
+.resprofile{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.reviews >h4{
+    width: 300px;
+    padding: 10px 10px 10px 10px;
+    background-color: #F8F8F8;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.reviewStat{
+    width: 300px;
+    padding: 10px 10px 10px 10px;
+    background-color: #F8F8F8;
+    text-align: left;
+    border-radius: 10px;
+}
+
+.reviewStat div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.reviewStat div > p{
+    width: 100px;
+}
+
+.stars {
+    display: flex;
+  }
+  
+  .fa-star {
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .fa-star.checked {
+    color: gold;
+  }
+  
+.writeReivews{
+    margin-top: 20px;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: #F8F8F8;
+    border-style: none;
+    resize: vertical;
+  }
+  
+  .reviewText {
+    margin-top: 20px;
+  }
+
+  .writeReivews button{
+    background-color: grey;
+    color: white;
+    border: none;
+    padding: 5px 10px 5px 10px;
+    border-radius: 10px;
+
+  }
+.reviewHistory{
+    margin-top: 50px;
+}
+.profileInfo{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: grey solid 1px;
+}
+.profileInfo > div p{
+    margin: 5px;
+}
+@media (max-width: 768px) {
+    .reviewStat{
+        width: 100%;
+        padding: 5px;
+    }
+}
