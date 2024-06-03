@@ -18,7 +18,6 @@ loginRouter.get('/users', async (req, res) => {
 loginRouter.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
-        console.log(email, password);
         const collection = db.collection("Login");
         const user = await collection.findOne({ Email: email, Password: password });
         if (!user) {

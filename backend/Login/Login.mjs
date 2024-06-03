@@ -1,9 +1,9 @@
 import "./loadEnvironment.mjs"; 
 import express from 'express';
-import db from "./db/conn.mjs";
+import db from "./conn.mjs";
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT||5050;
 
 // Middleware to parse JSON
 app.use(express.json());

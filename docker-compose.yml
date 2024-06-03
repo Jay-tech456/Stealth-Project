@@ -13,12 +13,12 @@ services:
 
   backend:
     build:
-      context: ./backend
+      context: ./backend/Login
     ports:
       - "5001:5000"  # Use port 5001 on the host and port 5000 in the container
     environment:
       - NODE_ENV=production
-      - MONGO_URL=mongodb://mongo:27017/mydatabase
+      - MONGO_URL=mongodb+srv://ManjeshPrasad:Sunset123@cluster0.wewz47r.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
     depends_on:
       - mongo
     volumes:
