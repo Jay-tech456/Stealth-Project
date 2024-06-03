@@ -21,9 +21,9 @@ app.get('/Login', async (req, res) => {
     try {
         let collection = db.collection("Login");
         let results = await collection.find({}).limit(50).toArray();
-        res.status(200).send(results);
+        res.send(results);
     } catch (error) {
-        res.status(500).send({ error: "An error occurred while fetching data." });
+        res.send({ error: "An error occurred while fetching data." });
     }
 });
 
@@ -67,20 +67,33 @@ app.post('/Login', async (req, res) => {
 
 app.put('/Login', async (req, res) => {
   try {
+
+    /* 
+      Sample Body that will be sent: 
+        {
+          "fName": "Author",
+          "lName": "Smith",
+          "email": "dell@gmail.com",
+          "password": "happylane"
+      }
+    */ 
       let { fName, lName, email, password } = req.body;
       let collection = db.collection("Login");
 
       // Check if the email already exists  -- if email already exist, then we cannot 
       // make duplicate accounts
+
+      // Side Note: Use Case 1 passes -- Duplicate account
       let user = await collection.findOne({ Email: email });
       if (user) {
           return res.send({ message: "Email already exists" });
       }
-
-
       let newUser = { "First Name": fName, "Last Name": lName, Email: email, Password: password };
-      console.log(newUser); 
+      // console.log(newUser); 
+
+      // Use Case #2 for put request, Account successfully created, and will show on Atlas
       await collection.insertOne(newUser);
+
       res.send({ message: "User created successfully" });
   } catch (error) {
       res.send({ error: "An error occurred while creating the user." });
@@ -88,7 +101,6 @@ app.put('/Login', async (req, res) => {
 });
 
 
-// Start the server
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
