@@ -19,8 +19,8 @@ app.use((req, res, next) => {
   });
 
 
-// GET method --- Security Purposes, will give you all of the Reviews
-app.get('/Review', async (req, res) => {
+// GET method ---  For Resturants will give you all of the Resturant details
+app.get('/Restaurant', async (req, res) => {
     try {
         let collection = db.collection("Restaurant");
         let results = await collection.find({}).limit(50).toArray();
