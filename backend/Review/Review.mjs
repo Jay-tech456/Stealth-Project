@@ -1,6 +1,6 @@
 import "./loadEnvironment.mjs"; 
 import express from 'express';
-import db from "./db/conn.mjs";
+import db from "./conn.mjs";
 
 const app = express();
 const port = process.env.PORT2 || 5051;
@@ -21,6 +21,17 @@ app.use((req, res, next) => {
 
 // GET method ---  For Resturants will give you all of the Resturant details
 app.get('/Restaurant', async (req, res) => {
+    try {
+        let collection = db.collection("Restaurant");
+        let results = await collection.find({}).limit(50).toArray();
+        res.send(results);
+    } catch (error) {
+        res.send({ error: "An error occurred while fetching data." });
+    }
+});
+
+// GET method ---  For Resturants will give you all of the Resturant details
+app.get('/Review', async (req, res) => {
     try {
         let collection = db.collection("Restaurant");
         let results = await collection.find({}).limit(50).toArray();
