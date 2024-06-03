@@ -5,7 +5,6 @@ dotenv.config();
 
 const connectionString = process.env.ATLAS_URI || "";
 const client = new MongoClient(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
-
 let db;
 
 async function connectToDatabase() {

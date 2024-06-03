@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import signupUser from "../functions/signup";
+import AuthContext from "../functions/hook";
+import { useNavigate } from "react-router-dom";
 
 function SignUp({ setToggleSwitch }) {
   const [firstName, setFirstName] = useState("");
@@ -6,6 +9,8 @@ function SignUp({ setToggleSwitch }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const { setLogin, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
@@ -27,14 +32,7 @@ function SignUp({ setToggleSwitch }) {
     setConfirmPassword(e.target.value);
   };
 
-  const handleSubmit = () => {
-    // Add validation and API call logic here
-    console.log("First Name:", firstName);
-    console.log("Last Name:", lastName);
-    console.log("Email:", email);
-    console.log("Password:", password);
-    console.log("Confirm Password:", confirmPassword);
-
+  const handleSubmit = async () =>{
     if(password !== confirmPassword){
       alert("Passwords do not match");
       return;
@@ -44,7 +42,18 @@ function SignUp({ setToggleSwitch }) {
       return;
     }
     else{
-        alert("Sucessfully Sign Up")
+        const data = await signupUser(email, password, firstName, lastName);
+        console.log(data);
+        if (data.status === "ok"){
+           setUser(data.data);
+           localStorage.setItem("user", JSON.stringify(data.data));
+           setLogin(true);
+           navigate('/profile');
+        }
+        else{
+          console.log("Sign Up error");
+          alert("Unale to sign up at the moment");
+        }
     }
   };
 

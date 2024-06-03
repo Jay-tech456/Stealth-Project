@@ -1,6 +1,7 @@
 import AuthContext from "../functions/hook";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import loginUser from "../functions/login";
 
 function Login({ setToggleSwitch }) {
   const [email, setEmail] = useState("");
@@ -16,18 +17,18 @@ function Login({ setToggleSwitch }) {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = () => {
-    // Simulate an API call to log in the user
-    if (email === "user@example.com" && password === "password") {
-      const userdata = { email: email };
-      setUser(userdata);
-      setLogin(true); // Set the login state to true
-      navigate('/profile'); 
+  const handleSubmit = async () => {
+    const user = await loginUser(email, password);
+    if (user.status === "ok") {
+      setUser(user.data);
+      localStorage.setItem("user", JSON.stringify(user.data));
+      setLogin(true);
+      navigate('/profile');
     } else {
-      console.log("Invalid credentials");
+      alert("Invalid Credentials");
     }
-
   };
+  
 
   return (
     <div className="login">
