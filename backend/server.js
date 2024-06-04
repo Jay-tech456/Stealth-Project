@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import { MongoClient } from 'mongodb';
 import loginRouter from './routes/login/login.js';
 import cors from 'cors';
+import restaurantRouter from './routes/resturant/resturant.js';
 
 dotenv.config();
 const app = express();
@@ -37,7 +38,7 @@ async function startServer() {
 app.use('/api', loginRouter);
 // if you neeed to add more routes, you can add them here
 // by creating new routes as in backend/routes/login/login.js as an example
-
+app.use('/api', restaurantRouter);
 // Start the server
 startServer();
 

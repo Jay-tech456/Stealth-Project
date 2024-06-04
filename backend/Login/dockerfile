@@ -2,15 +2,9 @@
 FROM node:16
 
 # Set the working directory in the container
-<<<<<<< HEAD:backend/dockerfile
 WORKDIR /app
 
 # Copy package.json and package-lock.json
-=======
-WORKDIR /usr/src/app
-
-# Copy package.json and package-lock.json to the working directory
->>>>>>> bbacdd3e9330fc82346f771d158cab1dc1b50b8f:backend/Login/dockerfile
 COPY package*.json ./
 
 # Install dependencies
@@ -23,7 +17,6 @@ COPY . .
 EXPOSE 5000
 
 # Command to run the application
-<<<<<<< HEAD:backend/dockerfile
 CMD ["node", "server.js"]
 
 
@@ -55,6 +48,3 @@ CMD ["node", "server.js"]
 # # Command to run the application
 # CMD ["node", "index.mjs"]
 
-=======
-CMD ["node", "Login.mjs"]
->>>>>>> bbacdd3e9330fc82346f771d158cab1dc1b50b8f:backend/Login/dockerfile
