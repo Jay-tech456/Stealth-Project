@@ -48,6 +48,7 @@ Run the following Docker Compose commands:
 - **Website**: [http://localhost:3000/](http://localhost:3000/)
 - **Backend on Postman**: [http://localhost:5001/](http://localhost:5001/api/...)
 >**Note ** Request API Path, or look at the login.js and resturant.js for endpoint
+>***Note ** The API Gateway, Login, and Review directories are to provide a loosely coupled application. The directions above uses the Route directory. 
 
 ---
 
