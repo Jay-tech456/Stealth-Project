@@ -60,11 +60,9 @@ Add two `.env` files:
 
 Run the following Docker Compose commands from the root directory (`StealthProject`):
 
-```bash
-docker-compose down
-docker-compose build --no-cache
-docker-compose up
-
+    docker-compose down
+    docker-compose build --no-cache
+    docker-compose up
 
 ### Accessing the Application
 
@@ -76,3 +74,7 @@ docker-compose up
 ---
 
 Feel free to reach out if you have any questions or run into any issues.
+
+## Contributors
+1. [Bunpheng Chhay](https://github.com/Bunphengchhay)
+2. [Manjesh Prasad](https://github.com/Jay-tech456)
