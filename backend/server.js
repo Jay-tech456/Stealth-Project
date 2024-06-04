@@ -8,6 +8,7 @@ import restaurantRouter from './routes/resturant/resturant.js';
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;  // Ensure this is 5000
+// const port = 5002;
 
 // Middleware to parse JSON
 app.use(express.json());

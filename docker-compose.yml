@@ -13,7 +13,7 @@ services:
 
   backend:
     build:
-      context: ./backend/Login
+      context: ./backend
     ports:
       - "5001:5000"  # Use port 5001 on the host and port 5000 in the container
     environment:

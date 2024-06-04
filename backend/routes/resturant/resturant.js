@@ -50,26 +50,72 @@ restaurantRouter.get('/review', async (req, res) => {
 restaurantRouter.post('/review', async (req, res) => {
     try {
         const { key, restaurant_name, description, star, time_date, first_name } = req.body;
-            // console.log(req.body);
 
-            // the body for the new review
+        // The body for the new review
         const newReview = {
-            "key":key,
-            "restaurant_name": restaurant_name,
-            "description":description,
-            "star":star,
+            key,
+            restaurant_name,
+            description,
+            star,
             time_date: new Date(time_date),
-            "first_name": first_name
+            first_name,
         };
-        console.log(newReview)
-        const collection = db.collection("Review");
-        const result = await collection.insertOne(newReview);
 
-        res.status(201).send({ message: "Review added successfully", review: newReview });
+        const reviewCollection = db.collection('Review');
+        const restaurantCollection = db.collection('Restaurant');
+
+        // Insert the new review into the Review collection
+        await reviewCollection.insertOne(newReview);
+
+        // Fetch the restaurant document to get current numOfReviews and rating
+        const restaurant = await restaurantCollection.findOne({ name: restaurant_name });
+
+        if (!restaurant) {
+            return res.status(404).send({ error: 'Restaurant not found.' });
+        }
+
+        // Calculate the new average rating
+        const newNumOfReviews = restaurant.numOfReviews + 1;
+        const newAverageRating = (((restaurant.rating * restaurant.numOfReviews) + star) / newNumOfReviews).toFixed(2);
+        // Increment the numOfReviews field and update the average rating in the restaurant collection
+        await restaurantCollection.updateOne(
+            { name: restaurant_name },
+            { 
+                $inc: { numOfReviews: 1 },
+                $set: { rating: newAverageRating }
+            }
+        );
+
+        res.status(201).send({ message: 'Review added successfully', review: newReview });
     } catch (error) {
-        console.error("An error occurred while adding the review:", error);
-        res.status(500).send({ error: "An error occurred while adding the review." });
+        console.error('An error occurred while adding the review:', error);
+        res.status(500).send({ error: 'An error occurred while adding the review.' });
     }
 });
+
+// restaurantRouter.post('/review', async (req, res) => {
+//     try {
+//         const { key, restaurant_name, description, star, time_date, first_name } = req.body;
+//             // console.log(req.body);
+
+//             // the body for the new review
+//         const newReview = {
+//             "key":key,
+//             "restaurant_name": restaurant_name,
+//             "description":description,
+//             "star":star,
+//             time_date: new Date(time_date),
+//             "first_name": first_name
+//         };
+//         console.log(newReview)
+//         const collection = db.collection("Review");
+//         const result = await collection.insertOne(newReview);
+
+//         res.status(201).send({ message: "Review added successfully", review: newReview });
+//     } catch (error) {
+//         console.error("An error occurred while adding the review:", error);
+//         res.status(500).send({ error: "An error occurred while adding the review." });
+//     }
+// });
 
 export default restaurantRouter;
