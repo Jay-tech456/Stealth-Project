@@ -1,4 +1,4 @@
-# Yelp Resturant Review
+# Foodie
 <center><img src = "https://github.com/Jay-tech456/Stealth-Project/blob/main/Foodie.jpeg" height="600" width="auto"/> </center>
 ## Directions to Run the Application
 
