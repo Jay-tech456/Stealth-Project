@@ -24,22 +24,18 @@ restaurantRouter.get('/restaurants', async (req, res) => {
 });
 
 
-// GET method --- For Reviews will give you all of the Review details or a specific review by integer key
+// GET method --- For Reviews will give you all of the Review details or a specific review by restaurant name
 restaurantRouter.get('/review', async (req, res) => {
     try {
-
-        // In case the user wants to view a specified resturant's review, they would detect it using the key
-        const { key } = req.query;
-    
+        // In case the user wants to view a specified restaurant's review, they would detect it using the restaurant_name
+        const { restaurant_name } = req.query;
 
         const collection = db.collection("Review");
         let results;
-        
 
-        // If there is a querry key, the Rest will filter out everything else that do not have it. 
-        if (key) {
-            const intKey = parseInt(key, 10);
-            results = await collection.find({ key: intKey }).toArray();
+        // If there is a query restaurant_name, filter out everything else that does not have it
+        if (restaurant_name) {
+            results = await collection.find({ restaurant_name }).toArray();
         } else {
             results = await collection.find({}).limit(50).toArray();
         }
@@ -47,7 +43,7 @@ restaurantRouter.get('/review', async (req, res) => {
         res.send(results);
     } catch (error) {
         console.error("An error occurred while fetching data:", error);
-        res.statussend({ error: "An error occurred while fetching data." });
+        res.status(500).send({ error: "An error occurred while fetching data." });
     }
 });
 
