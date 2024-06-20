@@ -59,6 +59,16 @@ loginRouter.post('/signup', async (req, res) => {
     }
 });
 
+loginRouter.get('/user', async (req, res) => {
+    try {
+      const userCount = await db.collection("Login").countDocuments();
+      res.json({ userCount });
+    } catch (err) {
+      res.status(500).json({ error: 'An error occurred while counting users' });
+    }
+  });
+  
+
 
 
 

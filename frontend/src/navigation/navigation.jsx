@@ -39,6 +39,7 @@ function Navigation() {
           ) : (
             <NavLink to="/auth" activeclassname="active" style={{ color: isHome ? 'white' : 'black' }}> Login </NavLink>
           )}
+          <NavLink to="/users" activeclassname="active" style={{ color: isHome ? 'white' : 'black' }}> Users </NavLink>
         </div>
       </div>
       <div className="mobilescreen">
